@@ -1,6 +1,6 @@
 # Awesome CPT
 *Copyright 2014 Caleb Evans*  
-*Released under the MIT license*
+*Released under the GPLv2 license*
 
 ## Introduction
 
