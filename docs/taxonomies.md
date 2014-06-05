@@ -44,4 +44,4 @@ $genre = new Awesome_Taxonomy( array(
 ) );
 ```
 
-[Read about meta boxes](meta-boxes.md)
+## [Read about meta boxes](meta-boxes.md)
