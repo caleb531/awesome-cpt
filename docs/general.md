@@ -2,10 +2,11 @@
 
 ## Getting Started
 
-To use Awesome CPT on your site, you have two options:
+To use Awesome CPT on your site, download the `awesome-cpt` directory from GitHub and upload it to your site's `plugins` directory. You can download the entire repository using the following:
 
-1. Install Awesome CPT from the WordPress repository (coming soon)
-2. Download the `awesome-cpt` directory from GitHub and upload it to your site's `plugins` directory
+```
+git clone git@github.com:caleb531/awesome-cpt.git
+```
 
 Alternatively, instead of installing Awesome CPT as a plugin, you may include Awesome CPT into any of your existing PHP files like so:
 
