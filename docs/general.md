@@ -36,4 +36,4 @@ If you are an expert WordPress developer, you might be pleased to know that you 
 
 For instance, if you need a specialized meta box setup, you can code your meta boxes using the native WordPress API, while still using Awesome CPT for post types and taxonomies.
 
-## [Read about post types](docs/post-types.md)
+## [Read about post types](post-types.md)

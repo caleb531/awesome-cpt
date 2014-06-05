@@ -196,4 +196,4 @@ $movie = new Awesome_Post_Type( array(
 ) );
 ```
 
-## [Read about taxonomies](docs/taxonomies.md)
+## [Read about taxonomies](taxonomies.md)
