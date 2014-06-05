@@ -8,7 +8,7 @@ Awesome CPT is a set of classes designed to make WordPress custom post types inc
 
 ## Documentation
 
-### [General](docs/general.php)
+### [General](docs/general.md)
 ### [Post Types](docs/post-types.md)
 ### [Taxonomies](docs/taxonomies.md)
 ### [Meta Boxes](docs/meta-boxes.md)
