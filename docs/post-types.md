@@ -1,13 +1,10 @@
-# Post Types
+# Documentation: Post Types
 
 ## Basic syntax
 
-You can create a new custom post type using the `PostType` class, the constructor for which accepts two required arguments:
+You can create a new custom post type using the `PostType` class. The constructor for which accepts an array containing properties specific to Awesome CPT (these include most of the properties documented below).
 
-1. An array containing properties specific to Awesome CPT (these include most of the properties documented below)
-2. The arguments array that is normally passed to WordPress's [`register_post_type()`](https://codex.wordpress.org/Function_Reference/register_post_type) function
-
-Ever post type requires an ID (lowercase letters and underscores only) and the singular and plural variants of the post type name (letters and spaces only).
+Ever post type requires an ID (lowercase letters and underscores only) and the singular and plural variants of the post type name (letters and spaces only). The singular and plural names should be lowercase *in most cases* (special casing is mentioned in the next section).
 
 ```
 $movie = new Awesome_Post_Type( array(
@@ -71,6 +68,29 @@ $tv_show = new Awesome_Post_Type( array(
 ) );
 ```
 
+## Arguments
+
+Awesome CPT also accepts an array of arguments (the same arguments array passed to `register_post_type`) via the `args` property:
+
+```
+$movie = new Awesome_Post_Type( array(
+    'id'   => 'movie',
+    'name' => array(
+        'singular' => 'movie',
+        'plural'   => 'movies'
+    ),
+    'args' => array(
+        'menu_icon'     => 'dashicons-video-alt2',
+        'menu_position' => 20,
+        'has_archive'   => 'movies'
+    )
+) );
+```
+
+You can read about these possible arguments via the [WordPress Codex](http://codex.wordpress.org/Function_Reference/register_post_type#Arguments).
+
+Note that all Awesome CPT post types are made public by default (in contrast to the normal WordPress default for `public`).
+
 ## Labels
 
 CTP Classes will automatically create labels for your post type based on the `name`, `title`, and `cap_name` arrays. For instance, the first `small_group` example will generate the following labels:
@@ -125,8 +145,6 @@ $movie = Awesome_Post_Type( array(
         'singular' => 'movie',
         'plural'   => 'movies'
     )
-), array(
-    'public' => true
 ) );
 $tv_show->add_columns( array(
   array(
@@ -191,8 +209,6 @@ $movie = new Awesome_Post_Type( array(
         'plural'   => 'movies'
     ),
     'post_updated_messages' => 'my_post_updated_messages'
-), array(
-    'public' => true
 ) );
 ```
 

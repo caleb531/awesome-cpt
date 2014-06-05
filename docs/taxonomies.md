@@ -1,4 +1,4 @@
-# Taxonomies
+# Documentation: Taxonomies
 
 ## General usage
 
@@ -17,9 +17,11 @@ $genre = new Awesome_Taxonomy( array(
         'plural'   => 'genres'
     ),
     'post_types' => array( 'movie' )
-), array(
-    'hierarchical' => true
-) );
+    'args' => array(
+        'hierarchical'      => true,
+        'show_admin_column' => true
+    )
+);
 ```
 
 As you can see, the `post_types` array should contain the `id` of each post type you want to associate with the taxonomy.
@@ -39,9 +41,11 @@ $genre = new Awesome_Taxonomy( array(
     ),
     'post_types' => array( 'movie' ),
     'filterable' => true
-), array(
-    'hierarchical' => true
-) );
+    ),
+    'args' => array(
+        'hierarchical' => true
+    )
+)l
 ```
 
 ## [Read about meta boxes](meta-boxes.md)

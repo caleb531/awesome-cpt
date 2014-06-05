@@ -1,4 +1,4 @@
-# General
+# Documentation: General
 
 ## Getting Started
 
@@ -21,7 +21,9 @@ You can detect the presence of Awesome CPT using the `AWESOME_CPT` constant:
 
 ```
 if ( defined( 'AWESOME_CPT' ) ) {
-    // your code here
+    // define custom post post types, taxonomies, meta boxes
+} else {
+    // inform user that Awesome CPT is missing
 }
 ```
 
@@ -33,8 +35,8 @@ Awesome CPT consists of three classes meant for use by developers:
 * `Awesome_Taxonomy`
 * `Awesome_Meta_Box`
 
-If you are an expert WordPress developer, you might be pleased to know that you are not required to use *all* of these classes. These classes are totally independent in that they do not depend on each other to function properly.
+If you are an expert WordPress developer, you might be pleased to know that you are not required to use *all* of these classes. These classes are completely independent—that is, they do not depend on each other to function properly.
 
-For instance, if you need a specialized meta box setup, you can code your meta boxes using the native WordPress API, while still using Awesome CPT for post types and taxonomies.
+For instance, if you need a specialized meta box setup, you can code your meta boxes using the native WordPress API, while still using Awesome CPT for your custom post types and taxonomies.
 
 ## [Read about post types](post-types.md)
