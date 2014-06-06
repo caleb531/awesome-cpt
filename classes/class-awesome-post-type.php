@@ -10,15 +10,15 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 	
 	// Post Type constructor
 	public function __construct( $params ) {
-		// Call Awesome_Base_Type constructor
+		// Call parent class constructor
 		parent::__construct( $params, self::$arg_defaults );
 		// Initialize CPT columns
 		$this->added_cols = array();
 		$this->removed_cols = array();
 		$this->sortable_cols = array();
 		
-		// Initialize CPT
-		add_action( 'init', array( $this, 'init' ), 10 );
+		// Initialize CPT immediately
+		$this->init();
 		
 		if ( ! empty( $this->post_updated_messages ) ) {
 			// Set CPT messages via callback if given

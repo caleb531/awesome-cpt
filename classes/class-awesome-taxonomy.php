@@ -10,13 +10,17 @@ class Awesome_Taxonomy extends Awesome_Base_Type {
 		
 	// Taxonomy constructor
 	public function __construct( $params ) {
-		// Call Awesome_Base_Type constructor
+		// Call parent class constructor
 		parent::__construct( $params, self::$arg_defaults );
+		
+		// Initialize taxonomy immediately
+		$this->init();
+		
+		// If taxonomy is designated as filterable
 		if ( ! empty( $this->filterable ) ) {
+			// Make taxonomy filterable
 			add_action( 'restrict_manage_posts', array( $this, 'restrict_taxonomy' ), 10 );
 		}
-		// Initialize taxonomy
-		add_action( 'init', array( $this, 'init' ), 10 );
 	}
 	
 	// Initialize taxonomy

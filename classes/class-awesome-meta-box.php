@@ -129,9 +129,10 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 		// If value for options field is given
 		if ( ! empty( $field['options'] ) ) {
 			if ( is_callable( $field['options'] ) ) {
-				// Accept options array returned from callback
+				// Accept options array returned from the given callback
 				$options = call_user_func_array( $field['options'], array( $meta_value, $field, $post ) );
 			} elseif ( is_array( $field['options'] ) ) {
+				// Otherwise, use options array if given
 				$options = $field['options'];
 			}
 		} else {

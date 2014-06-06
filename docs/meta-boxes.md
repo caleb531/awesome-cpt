@@ -243,6 +243,28 @@ array(
 
 Again, note that the anonymous functions used above are only supported in PHP 5.3 and newer.
 
+#### Date pickers (`<input type='date'>`)
+
+```
+array(
+    'id'    => 'my_date_picker',
+    'type'  => 'date',    
+    'label' => 'My Date Picker',
+    'value' => '2014-01-01'
+)
+```
+
+#### Color pickers (`<input type='color'>`)
+
+```
+array(
+    'id'    => 'my_color_picker',
+    'type'  => 'color',    
+    'label' => 'My Color Picker',
+    'value' => '#000'
+)
+```
+
 #### Custom fields
 
 You can also specify custom HTML for your field by passing a function reference to the `populate` property. This allows for dynamic generation of your field to fit your needs (such as querying posts or sending a request).
