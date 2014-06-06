@@ -26,6 +26,8 @@ $genre = new Awesome_Taxonomy( array(
 
 As you can see, the `post_types` array should contain the `id` of each post type you want to associate with the taxonomy.
 
+Note that internally, the custom taxonomy is initialized when WordPress is initialized (via the `init` action, with a priority of 10).
+
 ## Filterable taxonomies
 
 Awesome CPT allows you to easily make any taxonomy filterable via the `filterable` property. Setting its value to `true` will add a dropdown menu to your post type admin screen, from which you can filter your posts by taxonomy.

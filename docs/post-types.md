@@ -26,6 +26,8 @@ $small_group = new Awesome_Post_Type( array(
 ) );
 ```
 
+Note that internally, the custom post type is initialized when WordPress is initialized (via the `init` action, with a priority of 10).
+
 ## Names
 
 Awesome CPT will automatically generate capitalized and title variants based on the `name` array you provide (using `ucfirst()` and `ucwords()`, respectively). For instance, the above `small_group` post type is equivalent to the following:

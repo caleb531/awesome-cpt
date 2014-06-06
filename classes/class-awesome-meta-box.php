@@ -128,11 +128,11 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 		echo ">";
 		// If value for options field is given
 		if ( ! empty( $field['options'] ) ) {
-			if ( is_array( $field['options'] ) ) {
-				$options = $field['options'];
-			} else if ( is_callable( $field['options'] ) ) {
+			if ( is_callable( $field['options'] ) ) {
 				// Accept options array returned from callback
 				$options = call_user_func_array( $field['options'], array( $meta_value, $field, $post ) );
+			} elseif ( is_array( $field['options'] ) ) {
+				$options = $field['options'];
 			}
 		} else {
 			// The options array is empty by default
@@ -199,7 +199,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 		if ( ! empty( $field['label'] ) ) {
 			echo "<label";
 			$this->echo_value( " for='", $field['id'], "'" );
-			$this->echo_value( ">", $field['label'], "</label> " );
+			$this->echo_value( ">", $field['label'], "</label>" );
 		}
 	}
 	
