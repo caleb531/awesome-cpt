@@ -144,7 +144,7 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 		add_filter( 'manage_posts_columns', array( $this, 'manage_posts_columns' ), 5 );
 		add_action( 'manage_posts_custom_column', array( $this, 'manage_posts_custom_column' ), 5, 2 );
 		// If at least one column has been made sortable
-		if ( count ( $this->sortable_cols ) !== 0 ) {
+		if ( 0 !== count( $this->sortable_cols ) ) {
 			// Bind filters/actions for sortable columns
 			add_filter( "manage_edit-{$this->id}_sortable_columns", array( $this, 'manage_sortable_columns' ), 10 );
 			add_action( 'pre_get_posts', array( $this, 'pre_get_posts' ), 10 );

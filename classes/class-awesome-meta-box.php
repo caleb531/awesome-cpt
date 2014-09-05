@@ -64,7 +64,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 	// Retrieve and output the given HTML attributes	
 	public function echo_attrs( $field, $attrs ) {
 		foreach ( $attrs as $attr ) {
-			if ( ! empty( $field[ $attr ] ) ) {
+			if ( $field[ $attr ] === '' || ! empty( $field[ $attr ] ) ) {
 				$this->echo_value( " {$attr}='", $field[ $attr ], "'" );
 			}
 		}
@@ -91,7 +91,6 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 			$this->populate_input( 'off', array_merge( $field, array(
 				'id'    => null,
 				'label' => null,
-				'description' => null,
 				'type'  => 'hidden'
 			) ), $post );
 		}
