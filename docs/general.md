@@ -35,7 +35,7 @@ Awesome CPT consists of three classes meant for use by developers:
 * `Awesome_Taxonomy`
 * `Awesome_Meta_Box`
 
-If you are an expert WordPress developer, you might be pleased to know that you are not required to use *all* of these classes. These classes are completely independent—that is, they do not depend on each other to function properly.
+If you are an expert WordPress developer, you might be pleased to know that you are not required to use *all* of these classes. These classes are completely independent from one another, meaning that they do not depend on each other to function properly.
 
 For instance, if you need a specialized meta box setup, you can code your meta boxes using the native WordPress API, while still using Awesome CPT for your custom post types and taxonomies.
 

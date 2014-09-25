@@ -64,14 +64,15 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 			}
 		}
 	}
+	
 	// Manage CPT sortable columns
-	public function manage_sortable_columns( $columns ) {
+	public function manage_sortable_columns( $sortable_columns ) {
 		if ( $this->id === get_post_type() ) {
 			foreach ( $this->sortable_cols as $col ) {
-				$columns[ $col['id'] ] = $col['orderby'];
+				$sortable_columns[ $col['id'] ] = $col['orderby'];
 			}
 		}
-		return $columns;
+		return $sortable_columns;
 	}
 	// Enable filter page for sortable columns
 	public function pre_get_posts( $query ) {
@@ -81,7 +82,11 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 			foreach ( $this->sortable_cols as $col ) {
 				if ( $orderby === $col['orderby'] ) {
 					// Optionally sort numeric values
-					$meta_value_order = $col['numeric'] ? 'meta_value_num' : 'meta_value';
+					if ( ! empty( $col['numeric'] ) ) {
+						$meta_value_order = 'meta_value_num';
+					} else {
+						$meta_value_order = 'meta_value';
+					}
 					// Set sorting parameters
 					$query->set( 'meta_key', $col['meta_key'] );
 					$query->set( 'orderby', $meta_value_order );

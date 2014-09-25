@@ -130,6 +130,27 @@ $small_group = new Awesome_Post_Type( array(
 ) );
 ```
 
+### Messages
+
+One of the unique features of Awesome CPT is its ability to automatically generate action messages for your post type. These messages appear when you publish, schedule, or update a post.
+
+If you wish to override these messages, Awesome CPT allows you to hook directly into the `post_updated_messages` filter, like so:
+
+```
+function my_post_updated_messages( $messages ) {
+    // extend the $messages array here
+    return $messages;
+}
+$movie = new Awesome_Post_Type( array(
+    'id'   => 'movie',
+    'name' => array(
+        'singular' => 'movie',
+        'plural'   => 'movies'
+    ),
+    'post_updated_messages' => 'my_post_updated_messages'
+) );
+```
+
 ## Columns
 
 You can add columns to a custom post type's admin screen using the `add_columns()` method. The method accepts an array as its only argument, which in turn accepts a variable number of arrays. Each of these arrays contains properties for each column.
@@ -174,44 +195,31 @@ Note that the anonymous functions used above are only supported in PHP 5.3 and n
 ...
 ```
 
+Naturally, you can also reference methods if you are working within a class:
+
+```
+...
+'populate' => array( $this, 'my_method_name' )
+...
+```
+
 ### Sortable columns
 
 To make a column sortable, simply specify the `meta_key` and `orderby` properties for any given column. The value for the `meta_key` property must be the ID of some meta data stored on the post. The `orderby` property is the generic name of the data by which you are sorting (as shown in the page URL).
 
 ```
 array(
-    'id'       => 'release_date',
-    'title'    => 'Release Date',
+    'id'       => 'gross_income',
+    'title'    => 'Gross Income',
     'populate' => function( $post_id ) {
-        echo get_post_meta( $post_id, 'release_date', true );
+        echo '$' . number_format( get_post_meta( $post_id, 'gross_income', true ) );
     },
-    'meta_key' => 'release_date',
-    'orderby'  => 'release_date',
-    'numeric'  => false
+    'meta_key' => 'gross_income',
+    'orderby'  => 'gross_income',
+    'numeric'  => true
 )
 ```
 
-Setting the `numeric` property's value to `true` will sort the column numerically rather than alphabetically. Contrary to the example above, you only need to list the property if its value is `true`.
-
-### Messages
-
-One of the unique features of Awesome CPT is its ability to automatically generate action messages for your post type. These messages appear when you publish, schedule, or update a post.
-
-If you wish to override these messages, Awesome CPT allows you to hook directly into the `post_updated_messages` filter, like so:
-
-```
-function my_post_updated_messages( $messages ) {
-    // extend the $messages array here
-    return $messages;
-}
-$movie = new Awesome_Post_Type( array(
-    'id'   => 'movie',
-    'name' => array(
-        'singular' => 'movie',
-        'plural'   => 'movies'
-    ),
-    'post_updated_messages' => 'my_post_updated_messages'
-) );
-```
+Setting the `numeric` property's value to `true` will sort the column numerically rather than alphabetically.
 
 ## [Read about taxonomies](taxonomies.md)
