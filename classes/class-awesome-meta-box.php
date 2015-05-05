@@ -22,9 +22,13 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 		if ( empty( $this->fields ) ) {
 			$this->fields = array();
 		}
+		// Callback arguments array defaults to empty array
+		if ( empty( $this->callback_args ) ) {
+			$this->callback_args = array();
+		}
 		$this->modify_fields();
 		// Add actions to make meta boxes functional
-		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ), 10 );
+		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ), 10 );
 		add_action( 'save_post', array( $this, 'save_post' ), 10 );
 	}
 	
@@ -43,7 +47,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 	}
 	
 	// Action callback for adding meta box for all given post types
-	public function add_meta_box() {
+	public function add_meta_boxes() {
 		foreach ( $this->post_types as $post_type_id ) {
 			add_meta_box(
 				$this->id,
@@ -51,7 +55,8 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 				array( $this, 'populate_fields' ),
 				$post_type_id,
 				$this->context,
-				$this->priority
+				$this->priority,
+				$this->callback_args
 			);
 		}
 	}
@@ -307,8 +312,9 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 							// Filter saved meta value
 							$meta_value = call_user_func_array( $field['save'], array( $meta_value, $field, $post ) );
 						}
-						// Update database value for field
+						// If value has changed
 						if ( $meta_value !== get_post_meta( $post_id, $field['name'], true ) ) {
+							// Update database value for field
 							update_post_meta( $post_id, $field['name'], $meta_value );
 						}
 					}
