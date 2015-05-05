@@ -2,7 +2,9 @@
 
 ## General usage
 
-You can create a new taxonomy using the `Awesome_Meta_Box` class, the constructor for which accepts an array of properties. This array accepts a number of various properties.
+You can create a new taxonomy using the `Awesome_Meta_Box` class, the
+constructor for which accepts an array of properties. This array accepts a
+number of various properties.
 
 * `id`: required; the ID of the meta box
 * `title`: required; the displayed title of the meta box
@@ -11,7 +13,8 @@ You can create a new taxonomy using the `Awesome_Meta_Box` class, the constructo
 * `priority`: optional; the priority within the context where the meta box should show (`high`, `core`, `default`, or `low`)
 * `fields`: optional; an array of data fields that are to be displayed in the meta box
 
-Assuming a new instance of `Awesome_Post_Type` (with an `id` of `movie`) has already been created:
+Assuming a new instance of `Awesome_Post_Type` (with an `id` of `movie`) has
+already been created:
 
 ```
 $release_date = new Awesome_Meta_Box( array(
@@ -21,12 +24,14 @@ $release_date = new Awesome_Meta_Box( array(
     'context' => 'normal',
     'priority' => 'high',
     'fields' => array()
-) )
+) );
 ```
 
 ## Fields
 
-As mentioned above, each `Awesome_Meta_Box` instance must have an array of fields, each of which represents a form field in the meta box. This array can any number of field, each of which is itself an array.
+As mentioned above, each `Awesome_Meta_Box` instance must have an array of
+fields, each of which represents a form field in the meta box. This array can
+any number of field, each of which is itself an array.
 
 Each field accepts the following properties:
 
@@ -62,12 +67,13 @@ $release_date = new Awesome_Meta_Box( array(
             'placeholder' => 'Enter the movie release date here'
         )
     )
-) )
+) );
 ```
 
 ### `before` and `after` properties
 
-As briefly mentioned above, the `before` and `after` properties determine what HTML should precede and follow (respectively) any given field.
+As briefly mentioned above, the `before` and `after` properties determine what
+HTML should precede and follow (respectively) any given field.
 
 ```
 array(
@@ -80,7 +86,8 @@ array(
 )
 ```
 
-If you'd prefer to set the default `before` and `after` HTML for all fields, modify the static `field_defaults` array.
+If you'd prefer to set the default `before` and `after` HTML for all fields,
+modify the static `field_defaults` array.
 
 ```
 Awesome_Meta_Box::$field_defaults['before'] = ''
@@ -89,7 +96,8 @@ Awesome_Meta_Box::$field_defaults['after'] = '<br />'
 
 ### Examples
 
-Below are examples of the various input types you can create. For all of these types, Awesome CPT will handle the HTML escaping of values on your behalf.
+Below are examples of the various input types you can create. For all of these
+types, Awesome CPT will handle the HTML escaping of values on your behalf.
 
 #### Text fields (`<input type='text'>`)
 
@@ -107,28 +115,32 @@ array(
 ```
 array(
     'id'          => 'review',
-    'type'        => 'textarea',    
+    'type'        => 'textarea',
     'placeholder' => 'Enter a short review of the movie'
 )
 ```
 
 #### Checkboxes (`<input type='checkbox'>`)
 
-Note that Awesome CPT will automatically add a `hidden` input to allow for the proper saving of the checkbox value. This default unchecked value is `off`.
+Note that Awesome CPT will automatically add a `hidden` input to allow for the
+proper saving of the checkbox value. This default unchecked value is `off`.
 
 ```
 array(
     'id'      => 'supports_3d',
-    'type'    => 'checkbox',    
+    'type'    => 'checkbox',
     'label'   => 'Available in 3D?',
     'value'   => 'on',
     'checked' => false
 )
 ```
 
-The following example will output a list of checkboxes for selecting the languages in which the movie is available.
+The following example will output a list of checkboxes for selecting the
+languages in which the movie is available.
 
-Note that each field `name` ends in a pair of brackets—this is to ensure the checked values are properly saved. Also note that the example utilizes the `before` and `after` properties to 
+Note that each field `name` ends in a pair of brackets—this is to ensure the
+checked values are properly saved. Also note that the example utilizes the
+`before` and `after` properties to
 
 ```
 array(
@@ -166,7 +178,7 @@ array(
 ```
 array(
     'id'      => 'my_radio_button',
-    'type'    => 'radio',    
+    'type'    => 'radio',
     'label'   => 'My Radio Button',
     'checked' => false
 )
@@ -177,7 +189,7 @@ array(
 ```
 array(
     'id'    => 'my_radio_button',
-    'type'  => 'radio',    
+    'type'  => 'radio',
     'label' => 'My Radio Button',
     'src'   => get_template_directory_uri() . '/images/myimage.png',
     'alt'   => 'My Image'
@@ -216,9 +228,12 @@ array(
 
 ##### Custom options
 
-Instead of passing an array of option arrays, you can also pass a function reference to the `options` property. The referenced function must return an array in the same form as the one above (an array of option arrays).
+Instead of passing an array of option arrays, you can also pass a function
+reference to the `options` property. The referenced function must return an
+array in the same form as the one above (an array of option arrays).
 
-See the example below, which modifies the previous example to dynamically generate a menu of ratings.
+See the example below, which modifies the previous example to dynamically
+generate a menu of ratings.
 
 ```
 array(
@@ -241,14 +256,15 @@ array(
 )
 ```
 
-Again, note that the anonymous functions used above are only supported in PHP 5.3 and newer.
+Again, note that the anonymous functions used above are only supported in PHP
+5.3 and newer.
 
 #### Date pickers (`<input type='date'>`)
 
 ```
 array(
     'id'    => 'my_date_picker',
-    'type'  => 'date',    
+    'type'  => 'date',
     'label' => 'My Date Picker',
     'value' => '2014-01-01'
 )
@@ -259,7 +275,7 @@ array(
 ```
 array(
     'id'    => 'my_color_picker',
-    'type'  => 'color',    
+    'type'  => 'color',
     'label' => 'My Color Picker',
     'value' => '#000'
 )
@@ -267,9 +283,13 @@ array(
 
 #### Custom fields
 
-You can also specify custom HTML for your field by passing a function reference to the `populate` property. This allows for dynamic generation of your field to fit your needs (such as querying posts or sending a request).
+You can also specify custom HTML for your field by passing a function reference
+to the `populate` property. This allows for dynamic generation of your field to
+fit your needs (such as querying posts or sending a request).
 
-Note that you still need to specify the field's ID in the field array, though you can access this in your `populate` function for awesome reuse (via the `$field` parameter).
+Note that you still need to specify the field's ID in the field array, though
+you can access this in your `populate` function for awesome reuse (via the
+`$field` parameter).
 
 ```
 array(
@@ -282,15 +302,18 @@ array(
 )
 ```
 
-Also note that using the `populate` callback will require you to escape the variables you use.
+Also note that using the `populate` callback will require you to escape the
+variables you use.
 
 #### Filters
 
-You can also pass the value of a meta box field through a filter before being saved to the database or displayed in the field.
+You can also pass the value of a meta box field through a filter before being
+saved to the database or displayed in the field.
 
 ##### `save` filter
 
-The meta value will be run through the `save` filter before the meta data is saved to the post object.
+The meta value will be run through the `save` filter before the meta data is
+saved to the post object.
 
 ```
 array(
@@ -307,7 +330,7 @@ array(
 
 ##### `display` filter
 
-The meta value will be run through the `display` filter before being displayed 
+The meta value will be run through the `display` filter before being displayed
 
 ```
 array(
