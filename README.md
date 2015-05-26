@@ -1,5 +1,6 @@
 # Awesome CPT
-*Copyright 2014 Caleb Evans*  
+
+*Copyright 2015 Caleb Evans*  
 *Licensed under the MIT license*
 
 Awesome CPT is a set of classes designed to make coding WordPress custom post

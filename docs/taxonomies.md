@@ -2,12 +2,14 @@
 
 ## General usage
 
-You can create a new taxonomy using the `Awesome_Taxonomy` class. The constructor for which accepts two required arguments:
+You can create a new taxonomy using the `Awesome_Taxonomy` class. The
+constructor for which accepts two required arguments:
 
 1. An array containing properties specific to Awesome CPT (these include most of the properties documented below)
 2. The arguments array that is normally passed to WordPress's [`register_taxonomy()`](https://codex.wordpress.org/Function_Reference/register_taxonomy) function
 
-Assuming a new instance of `Awesome_Post_Type` (with an `id` of `movie`) has already been created:
+Assuming a new instance of `Awesome_Post_Type` (with an `id` of `movie`) has
+already been created:
 
 ```
 $genre = new Awesome_Taxonomy( array(
@@ -16,7 +18,7 @@ $genre = new Awesome_Taxonomy( array(
         'singular' => 'genre',
         'plural'   => 'genres'
     ),
-    'post_types' => array( 'movie' )
+    'post_types' => array( 'movie' ),
     'args' => array(
         'hierarchical'      => true,
         'show_admin_column' => true
@@ -24,13 +26,17 @@ $genre = new Awesome_Taxonomy( array(
 );
 ```
 
-As you can see, the `post_types` array should contain the `id` of each post type you want to associate with the taxonomy.
+As you can see, the `post_types` array should contain the `id` of each post type
+you want to associate with the taxonomy.
 
-Note that internally, the custom taxonomy is initialized when WordPress is initialized (via the `init` action, with a priority of 10).
+Note that internally, the custom taxonomy is initialized when WordPress is
+initialized (via the `init` action, with a priority of 10).
 
 ## Filterable taxonomies
 
-Awesome CPT allows you to easily make any taxonomy filterable via the `filterable` property. Setting its value to `true` will add a dropdown menu to your post type admin screen, from which you can filter your posts by taxonomy.
+Awesome CPT allows you to easily make any taxonomy filterable via the
+`filterable` property. Setting its value to `true` will add a dropdown menu to
+your post type admin screen, from which you can filter your posts by taxonomy.
 
 To work off the above example of a `genre` taxonomy:
 
@@ -42,12 +48,11 @@ $genre = new Awesome_Taxonomy( array(
         'plural'   => 'genres'
     ),
     'post_types' => array( 'movie' ),
-    'filterable' => true
-    ),
+    'filterable' => true,
     'args' => array(
         'hierarchical' => true
     )
-)l
+);
 ```
 
 ## [Read about meta boxes](meta-boxes.md)
