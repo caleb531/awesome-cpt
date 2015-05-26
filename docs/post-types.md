@@ -2,9 +2,14 @@
 
 ## Basic syntax
 
-You can create a new custom post type using the `PostType` class. The constructor for which accepts an array containing properties specific to Awesome CPT (these include most of the properties documented below).
+You can create a new custom post type using the `PostType` class. The
+constructor for which accepts an array containing properties specific to Awesome
+CPT (these include most of the properties documented below).
 
-Ever post type requires an ID (lowercase letters and underscores only) and the singular and plural variants of the post type name (letters and spaces only). The singular and plural names should be lowercase *in most cases* (special casing is mentioned in the next section).
+Ever post type requires an ID (lowercase letters and underscores only) and the
+singular and plural variants of the post type name (letters and spaces only).
+The singular and plural names should be lowercase *in most cases* (special
+casing is mentioned in the next section).
 
 ```
 $movie = new Awesome_Post_Type( array(
@@ -26,11 +31,14 @@ $small_group = new Awesome_Post_Type( array(
 ) );
 ```
 
-Note that internally, the custom post type is initialized when WordPress is initialized (via the `init` action, with a priority of 10).
+Note that internally, the custom post type is initialized when WordPress is
+initialized (via the `init` action, with a priority of 10).
 
 ## Names
 
-Awesome CPT will automatically generate capitalized and title variants based on the `name` array you provide (using `ucfirst()` and `ucwords()`, respectively). For instance, the above `small_group` post type is equivalent to the following:
+Awesome CPT will automatically generate capitalized and title variants based on
+the `name` array you provide (using `ucfirst()` and `ucwords()`, respectively).
+For instance, the above `small_group` post type is equivalent to the following:
 
 ```
 $small_group = new Awesome_Post_Type( array(
@@ -50,7 +58,9 @@ $small_group = new Awesome_Post_Type( array(
 ) );
 ```
 
-In most cases, you can let Awesome CPT correctly generate these other name variants. However, for names which require special casing, you may specify these variants yourself.
+In most cases, you can let Awesome CPT correctly generate these other name
+variants. However, for names which require special casing, you may specify these
+variants yourself.
 
 ```
 $tv_show = new Awesome_Post_Type( array(
@@ -72,7 +82,8 @@ $tv_show = new Awesome_Post_Type( array(
 
 ## Arguments
 
-Awesome CPT also accepts an array of arguments (the same arguments array passed to `register_post_type`) via the `args` property:
+Awesome CPT also accepts an array of arguments (the same arguments array passed
+to `register_post_type`) via the `args` property:
 
 ```
 $movie = new Awesome_Post_Type( array(
@@ -89,13 +100,17 @@ $movie = new Awesome_Post_Type( array(
 ) );
 ```
 
-You can read about these possible arguments via the [WordPress Codex](http://codex.wordpress.org/Function_Reference/register_post_type#Arguments).
+You can read about these possible arguments via the [WordPress
+Codex](http://codex.wordpress.org/Function_Reference/register_post_type#Arguments).
 
-Note that all Awesome CPT post types are made public by default (in contrast to the normal WordPress default for `public`).
+Note that all Awesome CPT post types are made public by default (in contrast to
+the normal WordPress default for `public`).
 
 ## Labels
 
-CTP Classes will automatically create labels for your post type based on the `name`, `title`, and `cap_name` arrays. For instance, the first `small_group` example will generate the following labels:
+CTP Classes will automatically create labels for your post type based on the
+`name`, `title`, and `cap_name` arrays. For instance, the first `small_group`
+example will generate the following labels:
 
 ```
 'name'               =>  'Small Groups'
@@ -132,9 +147,12 @@ $small_group = new Awesome_Post_Type( array(
 
 ### Messages
 
-One of the unique features of Awesome CPT is its ability to automatically generate action messages for your post type. These messages appear when you publish, schedule, or update a post.
+One of the unique features of Awesome CPT is its ability to automatically
+generate action messages for your post type. These messages appear when you
+publish, schedule, or update a post.
 
-If you wish to override these messages, Awesome CPT allows you to hook directly into the `post_updated_messages` filter, like so:
+If you wish to override these messages, Awesome CPT allows you to hook directly
+into the `post_updated_messages` filter, like so:
 
 ```
 function my_post_updated_messages( $messages ) {
@@ -153,7 +171,10 @@ $movie = new Awesome_Post_Type( array(
 
 ## Columns
 
-You can add columns to a custom post type's admin screen using the `add_columns()` method. The method accepts an array as its only argument, which in turn accepts a variable number of arrays. Each of these arrays contains properties for each column.
+You can add columns to a custom post type's admin screen using the
+`add_columns()` method. The method accepts an array as its only argument, which
+in turn accepts a variable number of arrays. Each of these arrays contains
+properties for each column.
 
 The properties of each column include:
 
@@ -187,7 +208,9 @@ $tv_show->add_columns( array(
 ) );
 ```
 
-Note that the anonymous functions used above are only supported in PHP 5.3 and newer. For older versions, define your function beforehand, and set the `populate` property to the function's name as a string.
+Note that the anonymous functions used above are only supported in PHP 5.3 and
+newer. For older versions, define your function beforehand, and set the
+`populate` property to the function's name as a string.
 
 ```
 ...
@@ -205,7 +228,10 @@ Naturally, you can also reference methods if you are working within a class:
 
 ### Sortable columns
 
-To make a column sortable, simply specify the `meta_key` and `orderby` properties for any given column. The value for the `meta_key` property must be the ID of some meta data stored on the post. The `orderby` property is the generic name of the data by which you are sorting (as shown in the page URL).
+To make a column sortable, simply specify the `meta_key` and `orderby`
+properties for any given column. The value for the `meta_key` property must be
+the ID of some meta data stored on the post. The `orderby` property is the
+generic name of the data by which you are sorting (as shown in the page URL).
 
 ```
 array(
@@ -217,9 +243,10 @@ array(
     'meta_key' => 'gross_income',
     'orderby'  => 'gross_income',
     'numeric'  => true
-)
+);
 ```
 
-Setting the `numeric` property's value to `true` will sort the column numerically rather than alphabetically.
+Setting the `numeric` property's value to `true` will sort the column
+numerically rather than alphabetically.
 
 ## [Read about taxonomies](taxonomies.md)
