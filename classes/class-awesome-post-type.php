@@ -27,8 +27,14 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 			// Otherwise, generate messages
 			add_filter( 'post_updated_messages', array( $this, 'post_updated_messages' ), 10 );
 		}
+		// Ensures that built-in taxonomies are registered for post type
+		if ( ! empty( $this->args['taxonomies'] ) ) {
+			foreach ( $this->args['taxonomies'] as $taxonomy_id ) {
+				register_taxonomy_for_object_type( $taxonomy_id, $this->id )
+			}
+		}
 	}
-	
+
 	// Initialize CPT
 	public function init() {
 		register_post_type( $this->id, $this->args );
