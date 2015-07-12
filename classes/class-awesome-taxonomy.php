@@ -2,27 +2,27 @@
 
 // Class for creating custom taxonomies
 class Awesome_Taxonomy extends Awesome_Base_Type {
-	
+
 	// register_taxonomy() argument defaults
 	static $arg_defaults = array(
 		'public' => true
 	);
-		
+
 	// Taxonomy constructor
 	public function __construct( $params ) {
 		// Call parent class constructor
 		parent::__construct( $params, self::$arg_defaults );
-		
+
 		// Initialize taxonomy immediately
 		$this->init();
-		
+
 		// If taxonomy is designated as filterable
 		if ( ! empty( $this->filterable ) ) {
 			// Make taxonomy filterable
 			add_action( 'restrict_manage_posts', array( $this, 'restrict_taxonomy' ), 10 );
 		}
 	}
-	
+
 	// Initialize taxonomy
 	public function init() {
 		register_taxonomy(
@@ -31,7 +31,7 @@ class Awesome_Taxonomy extends Awesome_Base_Type {
 			$this->args
 		);
 	}
-	
+
 	// Add dropdown to filter posts by taxonomy term
 	public function restrict_taxonomy() {
 		global $typenow;
@@ -56,23 +56,23 @@ class Awesome_Taxonomy extends Awesome_Base_Type {
 			}
 		}
 	}
-	
+
 	// Create labels for custom post type
 	public function create_labels() {
 		$labels = array(
-			'name' => __( "{$this->title['plural']}" ),
-			'singular_name' => __( "{$this->title['singular']}" ),
-			'search_items' => __( "Search {$this->title['plural']}" ),
-			'all_items' => __( "All {$this->title['plural']}" ),
-			'parent_item' => __( "Parent {$this->title['singular']}" ),
+			'name'              => __( "{$this->title['plural']}" ),
+			'singular_name'     => __( "{$this->title['singular']}" ),
+			'search_items'      => __( "Search {$this->title['plural']}" ),
+			'all_items'         => __( "All {$this->title['plural']}" ),
+			'parent_item'       => __( "Parent {$this->title['singular']}" ),
 			'parent_item_colon' => __( "Parent {$this->title['singular']}:" ),
-			'edit_item' => __( "Edit {$this->title['singular']}" ), 
-			'update_item' => __( "Update {$this->title['singular']}" ),
-			'add_new_item' => __( "Add New {$this->title['singular']}" ),
-			'new_item_name' => __( "New {$this->title['singular']}" ),
-			'menu_name' => __( "{$this->title['plural']}" ),
+			'edit_item'         => __( "Edit {$this->title['singular']}" ),
+			'update_item'       => __( "Update {$this->title['singular']}" ),
+			'add_new_item'      => __( "Add New {$this->title['singular']}" ),
+			'new_item_name'     => __( "New {$this->title['singular']}" ),
+			'menu_name'         => __( "{$this->title['plural']}" )
 		);
 		return $labels;
 	}
-		
+
 }

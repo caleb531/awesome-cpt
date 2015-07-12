@@ -2,14 +2,14 @@
 
 // Class for creating custom meta boxes
 class Awesome_Meta_Box extends Awesome_Base_Type {
-	
+
 	// Default property values for all meta box fields
 	static $field_defaults = array(
 		'type'   => 'text',
 		'before' => '<p>',
 		'after'  => '</p>'
 	);
-	
+
 	// Meta Box constructor
 	function __construct( $params ) {
 		$this->merge_params( $params );
@@ -31,7 +31,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ), 10 );
 		add_action( 'save_post', array( $this, 'save_post' ), 10 );
 	}
-	
+
 	// Modify the fields for this meta box
 	public function modify_fields() {
 		foreach ( $this->fields as &$field ) {
@@ -45,7 +45,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 			$this->field_names[ $field['name'] ][] = $field;
 		}
 	}
-	
+
 	// Action callback for adding meta box for all given post types
 	public function add_meta_boxes() {
 		foreach ( $this->post_types as $post_type_id ) {
@@ -60,13 +60,13 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 			);
 		}
 	}
-	
+
 	// Output the escaped HTML value
 	public function echo_value( $before, $value, $after ) {
 		echo $before, esc_html( $value ), $after;
 	}
-	
-	// Retrieve and output the given HTML attributes	
+
+	// Retrieve and output the given HTML attributes
 	public function echo_attrs( $field, $attrs ) {
 		foreach ( $attrs as $attr ) {
 			if ( $field[ $attr ] === '' || ! empty( $field[ $attr ] ) ) {
@@ -74,7 +74,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 			}
 		}
 	}
-		
+
 	// Echo the attributes standard to all field types
 	public function echo_std_attrs( $meta_value, $field, $post ) {
 		$this->echo_attrs( $field, array( 'id', 'name', 'class', 'placeholder', 'pattern' ) );
@@ -82,12 +82,12 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 			echo " required";
 		}
 	}
-	
+
 	// Indicate if the given field is selected/checked or not
 	public function is_field_selected( $meta_value, $field, $attr ) {
 		return ( ( $meta_value && ! empty( $field['value'] ) && ( $meta_value === $field['value'] || ( is_array( $meta_value ) && in_array( $field['value'], $meta_value ) ) ) ) || ( ! $meta_value && ! empty( $field[ $attr ] ) ) );
 	}
-	
+
 	// Populate a checkbox/radio field
 	public function populate_checkbox( $meta_value, $field, $post ) {
 		// If this is the first field with this particular name
@@ -110,7 +110,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 		}
 		echo " />";
 	}
-	
+
 	// Populate an image input
 	public function populate_image( $meta_value, $field, $post ) {
 		echo "<input";
@@ -118,7 +118,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 		$this->echo_attrs( $field, array( 'type', 'value', 'src', 'alt' ) );
 		echo " />";
 	}
-	
+
 	// Populate a select (dropdown) menu
 	public function populate_select( $meta_value, $field, $post ) {
 		// Output containing select element
@@ -157,8 +157,8 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 		}
 		echo "</select>";
 	}
-	
-	
+
+
 	// Populate a textarea
 	public function populate_textarea( $meta_value, $field, $post ) {
 		echo "<textarea";
@@ -173,14 +173,14 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 			$this->echo_value( ">", $meta_value, "</textarea>" );
 		}
 	}
-	
+
 	// Populate a custom field created by callback function
 	public function populate_custom( $meta_value, $field, $post ) {
 		if ( ! empty( $field['populate'] ) ) {
 			call_user_func_array( $field['populate'], array( $meta_value, $field, $post ) );
 		}
 	}
-	
+
 	// Populate a regular input field (text, email, etc.)
 	public function populate_input( $meta_value, $field, $post ) {
 		// Output input element
@@ -197,7 +197,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 		}
 		echo " />";
 	}
-	
+
 	// Populate a field label
 	public function populate_label( $meta_value, $field, $post ) {
 		// Output field label if given
@@ -207,7 +207,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 			$this->echo_value( ">", $field['label'], "</label>" );
 		}
 	}
-	
+
 	// Populate the given field for the given post
 	public function populate_field( $meta_value, $field, $post ) {
 		// If filter callback is given
@@ -242,7 +242,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 			echo $field['after'];
 		}
 	}
-	
+
 	// Populate meta box with the defined fields
 	public function populate_fields( $post ) {
 		// Add nonce field for security
@@ -255,7 +255,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 			$this->populate_field( $meta_value, $field, $post );
 		}
 	}
-	
+
 	// Get POST variable from given name (supports brackets)
 	public function get_post_var( $name ) {
 		$key_matches = array();
@@ -277,7 +277,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 		}
 		return $val;
 	}
-	
+
 	// Save meta data on post save
 	public function save_post( $post_id ) {
 		global $post;
@@ -323,5 +323,5 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 			}
 		}
 	}
-	
+
 }

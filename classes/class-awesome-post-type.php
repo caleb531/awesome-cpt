@@ -2,12 +2,12 @@
 
 // Class for custom post types
 class Awesome_Post_Type extends Awesome_Base_Type {
-	
+
 	// register_post_type() argument defaults
 	static $arg_defaults = array(
 		'public' => true
 	);
-	
+
 	// Post Type constructor
 	public function __construct( $params ) {
 		// Call parent class constructor
@@ -16,10 +16,10 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 		$this->added_cols = array();
 		$this->removed_cols = array();
 		$this->sortable_cols = array();
-		
+
 		// Initialize CPT immediately
 		$this->init();
-		
+
 		if ( ! empty( $this->post_updated_messages ) ) {
 			// Set CPT messages via callback if given
 			add_filter( 'post_updated_messages', $this->post_updated_messages, 10 );
@@ -70,7 +70,7 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 			}
 		}
 	}
-	
+
 	// Manage CPT sortable columns
 	public function manage_sortable_columns( $sortable_columns ) {
 		if ( $this->id === get_post_type() ) {
@@ -101,46 +101,46 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 			}
 		}
 	}
-	
+
 	// Create labels for custom post type
 	public function create_labels() {
 		$labels = array(
-			'name' => __( "{$this->title['plural']}" ),
-			'singular_name' => __( "{$this->title['singular']}" ),
-			'name' => __( "{$this->title['plural']}" ),
-			'add_new_item' => __( "Add New {$this->title['singular']}" ),
-			'edit_item' => __( "Edit {$this->title['singular']}" ),
-			'new_item' => __( "New {$this->title['singular']}" ),
-			'all_items' => __( "All {$this->title['plural']}" ),
-			'view_item' => __( "View {$this->title['singular']}" ),
-			'search_items' => __( "Search {$this->title['plural']}" ),
-			'not_found' => __( "No {$this->name['plural']} found" ),
+			'name'               => __( "{$this->title['plural']}" ),
+			'singular_name'      => __( "{$this->title['singular']}" ),
+			'name'               => __( "{$this->title['plural']}" ),
+			'add_new_item'       => __( "Add New {$this->title['singular']}" ),
+			'edit_item'          => __( "Edit {$this->title['singular']}" ),
+			'new_item'           => __( "New {$this->title['singular']}" ),
+			'all_items'          => __( "All {$this->title['plural']}" ),
+			'view_item'          => __( "View {$this->title['singular']}" ),
+			'search_items'       => __( "Search {$this->title['plural']}" ),
+			'not_found'          => __( "No {$this->name['plural']} found" ),
 			'not_found_in_trash' => __( "No {$this->name['plural']} found in the Trash" ),
-			'parent_item_colon' => "Parent {$this->title['plural']}:",
-			'menu_name' => __( "{$this->title['plural']}" )
+			'parent_item_colon'  => "Parent {$this->title['plural']}:",
+			'menu_name'          => __( "{$this->title['plural']}" )
 		);
 		return $labels;
 	}
-	
+
 	// Set action messages for custom post type
 	public function create_messages( $messages ) {
 		global $post;
 		$messages = array(
-			0 => "", 
-			1 => sprintf( __( "{$this->cap_name['singular']} updated. <a href='%s'>View {$this->name['singular']}</a>" ), esc_url( get_permalink( $post->ID ) ) ),
-			2 => __( "Custom field updated." ),
-			3 => __( "Custom field deleted." ),
-			4 => __( "{$this->cap_name['singular']} updated." ),
-			5 => isset( $_GET['revision'] ) ? sprintf( __( "{$this->cap_name['singular']} restored to revision from %s" ), wp_post_revision_title( ( int ) $_GET['revision'], false ) ) : false,
-			6 => sprintf( __( "{$this->cap_name['singular']} published. <a href='%s'>View {$this->name['singular']}</a>" ), esc_url( get_permalink( $post->ID ) ) ),
-			7 => __( "{$this->cap_name['singular']} saved." ),
-			8 => sprintf( __( "{$this->cap_name['singular']} submitted. <a target='_blank' href='%s'>Preview {$this->name['singular']}</a>" ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) ),
-			9 => sprintf( __( "{$this->cap_name['singular']} scheduled for: <strong>%1\$s</strong>. <a target='_blank' href='%2\$s'>Preview {$this->name['singular']}</a>" ), date_i18n( __( "M j, Y @ G:i" ), strtotime( $post->post_date ) ), esc_url( get_permalink( $post->ID ) ) ),
+			0  => "",
+			1  => sprintf( __( "{$this->cap_name['singular']} updated. <a href='%s'>View {$this->name['singular']}</a>" ), esc_url( get_permalink( $post->ID ) ) ),
+			2  => __( "Custom field updated." ),
+			3  => __( "Custom field deleted." ),
+			4  => __( "{$this->cap_name['singular']} updated." ),
+			5  => isset( $_GET['revision'] ) ? sprintf( __( "{$this->cap_name['singular']} restored to revision from %s" ), wp_post_revision_title( ( int ) $_GET['revision'], false ) ) : false,
+			6  => sprintf( __( "{$this->cap_name['singular']} published. <a href='%s'>View {$this->name['singular']}</a>" ), esc_url( get_permalink( $post->ID ) ) ),
+			7  => __( "{$this->cap_name['singular']} saved." ),
+			8  => sprintf( __( "{$this->cap_name['singular']} submitted. <a target='_blank' href='%s'>Preview {$this->name['singular']}</a>" ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) ),
+			9  => sprintf( __( "{$this->cap_name['singular']} scheduled for: <strong>%1\$s</strong>. <a target='_blank' href='%2\$s'>Preview {$this->name['singular']}</a>" ), date_i18n( __( "M j, Y @ G:i" ), strtotime( $post->post_date ) ), esc_url( get_permalink( $post->ID ) ) ),
 			10 => sprintf( __( "{$this->cap_name['singular']} draft updated. <a target='_blank' href='%s'>Preview {$this->name['singular']}</a>" ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) ),
 		);
 		return $messages;
 	}
-	
+
 	// Add the columns with the the given IDs
 	public function add_columns( $columns ) {
 		foreach ( $columns as $col ) {
@@ -162,7 +162,7 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 		}
 		return $this;
 	}
-	
+
 	// Remove columns with the given IDs
 	public function remove_columns( $col_ids ) {
 		foreach ( $col_ids as $col_id ) {
@@ -174,5 +174,5 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 		}
 		return $this;
 	}
-	
+
 }
