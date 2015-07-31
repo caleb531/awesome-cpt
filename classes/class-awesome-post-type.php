@@ -30,7 +30,7 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 		// Ensures that built-in taxonomies are registered for post type
 		if ( ! empty( $this->args['taxonomies'] ) ) {
 			foreach ( $this->args['taxonomies'] as $taxonomy_id ) {
-				register_taxonomy_for_object_type( $taxonomy_id, $this->id )
+				register_taxonomy_for_object_type( $taxonomy_id, $this->id );
 			}
 		}
 	}
