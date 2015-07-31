@@ -2,7 +2,7 @@
 
 // Base class for post types, taxonomies, and meta boxes
 abstract class Awesome_Base_Type {
-	
+
 	// Base constructor for CPTs and taxonomies
 	public function __construct( $params, $arg_defaults ) {
 		$this->merge_params( $params );
@@ -27,7 +27,7 @@ abstract class Awesome_Base_Type {
 			add_action( 'contextual_help', array( $this, 'contextual_help' ), 10, 3 );
 		}
 	}
-	
+
 	// Add contextual help for type
 	public function contextual_help( $contextual_help, $screen_id, $screen ) {
 		// If contextual help callback was given
@@ -36,14 +36,14 @@ abstract class Awesome_Base_Type {
 			call_user_func_array( $this->contextual_help, array( $contextual_help, $screen_id, $screen ) );
 		}
 	}
-	
+
 	// Merge params into class instance
 	public function merge_params( $params ) {
 		foreach ( $params as $param_name => $param_value ) {
 			$this->$param_name = $param_value;
 		}
 	}
-	
+
 	// Compute other name variants for the type
 	public function add_names() {
 		// Construct title from the given name
@@ -61,5 +61,5 @@ abstract class Awesome_Base_Type {
 			);
 		}
 	}
-	
+
 }
