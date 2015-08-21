@@ -69,7 +69,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 	// Retrieve and output the given HTML attributes
 	public function echo_attrs( $field, $attrs ) {
 		foreach ( $attrs as $attr ) {
-			if ( $field[ $attr ] === '' || ! empty( $field[ $attr ] ) ) {
+			if ( isset( $field[ $attr ] ) ) {
 				$this->echo_value( " {$attr}='", $field[ $attr ], "'" );
 			}
 		}
