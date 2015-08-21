@@ -41,7 +41,9 @@ class Awesome_Taxonomy extends Awesome_Base_Type {
 				echo "<select name='$this->id' class='postform'>";
 				echo "<option value=''>View all {$this->name['plural']}</option>";
 				// Retrieve list of all terms
-				$terms = get_terms( $this->id );
+				$terms = get_terms( $this->id, array(
+					'hide_empty' => false
+				) );
 				foreach ( $terms as $term ) {
 					echo "<option value='$term->slug'";
 					// If term is currently being filtered
