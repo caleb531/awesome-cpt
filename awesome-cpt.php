@@ -4,10 +4,10 @@
  * Description: The easiest and most flexible way to code custom post types in WordPress
  * Author:      Caleb Evans
  * Author URI:  http://calebevans.me/
- * Version:     1.0
+ * Version:     1.0.2
  * License:     MIT
  */
- 
+
 // Define path to AwesomeCPT directory
 if ( ! defined( 'AWESOME_CPT_DIR' ) ) {
 	define( 'AWESOME_CPT_DIR', dirname( __FILE__ ) );
