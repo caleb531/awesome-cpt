@@ -282,7 +282,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 	public function save_post( $post_id ) {
 		global $post;
 		// Do not save if autosave is in progress
-		if ( ! empty( $this->autosave ) && defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
 		// Do not save if nonce field does not validate
