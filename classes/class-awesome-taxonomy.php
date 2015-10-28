@@ -62,17 +62,17 @@ class Awesome_Taxonomy extends Awesome_Base_Type {
 	// Create labels for custom post type
 	public function create_labels() {
 		$labels = array(
-			'name'              => __( "{$this->title['plural']}" ),
-			'singular_name'     => __( "{$this->title['singular']}" ),
-			'search_items'      => __( "Search {$this->title['plural']}" ),
-			'all_items'         => __( "All {$this->title['plural']}" ),
-			'parent_item'       => __( "Parent {$this->title['singular']}" ),
-			'parent_item_colon' => __( "Parent {$this->title['singular']}:" ),
-			'edit_item'         => __( "Edit {$this->title['singular']}" ),
-			'update_item'       => __( "Update {$this->title['singular']}" ),
-			'add_new_item'      => __( "Add New {$this->title['singular']}" ),
-			'new_item_name'     => __( "New {$this->title['singular']}" ),
-			'menu_name'         => __( "{$this->title['plural']}" )
+			'name'              => "{$this->title['plural']}",
+			'singular_name'     => "{$this->title['singular']}",
+			'search_items'      => "Search {$this->title['plural']}",
+			'all_items'         => "All {$this->title['plural']}",
+			'parent_item'       => "Parent {$this->title['singular']}",
+			'parent_item_colon' => "Parent {$this->title['singular']}:",
+			'edit_item'         => "Edit {$this->title['singular']}",
+			'update_item'       => "Update {$this->title['singular']}",
+			'add_new_item'      => "Add New {$this->title['singular']}",
+			'new_item_name'     => "New {$this->title['singular']}",
+			'menu_name'         => "{$this->title['plural']}"
 		);
 		return $labels;
 	}
