@@ -35,28 +35,26 @@ class Awesome_Taxonomy extends Awesome_Base_Type {
 	// Add dropdown to filter posts by taxonomy term
 	public function restrict_taxonomy() {
 		global $typenow;
-		foreach ( $this->post_types as $post_type_id ) {
-			if ( $typenow === $post_type_id ) {
-				// Output HTML for term filter dropdown
-				echo "<select name='$this->id' class='postform'>";
-				echo "<option value=''>View all {$this->name['plural']}</option>";
-				// Retrieve list of all terms
-				$terms = get_terms( $this->id, array(
-					'hide_empty' => false
-				) );
-				foreach ( $terms as $term ) {
-					echo "<option value='$term->slug'";
-					// If term is currently being filtered
-					if ( ! empty( $_GET[ $this->id ] ) && $_GET[ $this->id ] === $term->slug ) {
-						// Select the corresponding option
-						echo " selected";
-					}
-					echo ">$term->name</option>";
-				}
-				echo "</select>";
-				break;
-			}
-		}
+		$terms = get_terms( $this->id, array(
+			'hide_empty' => false
+		) );
+		?>
+		<?php foreach ( $this->post_types as $post_type_id ): ?>
+			<?php $is_empty = empty( $_GET[ $this->id ] ); ?>
+			<?php if ( $typenow === $post_type_id ): ?>
+				<select name="<?php echo $this->id; ?>" class='postform'>
+				<option value=''>View all <?php echo $this->name['plural']; ?></option>
+				<?php foreach ( $terms as $term ): ?>
+					<?php if ( ! $is_empty && $_GET[ $this->id ] === $term->slug ): ?>
+						<option value='<?php echo $term->slug; ?>' selected><?php echo $term->name; ?></option>
+					<?php else: ?>
+						<option value='<?php echo $term->slug; ?>'><?php echo $term->name; ?></option>
+					<?php endif; ?>
+				<?php endforeach; ?>
+				</select>
+				<?php break; ?>
+			<?php endif; ?>
+		<?php endforeach;
 	}
 
 	// Create labels for custom post type
