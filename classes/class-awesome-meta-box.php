@@ -85,7 +85,17 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 
 	// Indicate if the given field is selected/checked or not
 	public function is_field_selected( $meta_value, $field, $attr ) {
-		return ( ( $meta_value && ! empty( $field['value'] ) && ( $meta_value === $field['value'] || ( is_array( $meta_value ) && in_array( $field['value'], $meta_value ) ) ) ) || ( ! $meta_value && ! empty( $field[ $attr ] ) ) );
+		return (
+			(
+				$meta_value && ! empty( $field['value'] ) &&
+				(
+					$meta_value === $field['value'] ||
+					(
+						is_array( $meta_value ) &&
+						in_array( $field['value'], $meta_value )
+					)
+				)
+			) || ( ! $meta_value && ! empty( $field[ $attr ] ) ) );
 	}
 
 	// Populate a checkbox/radio field
