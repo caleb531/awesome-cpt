@@ -60,17 +60,17 @@ class Awesome_Taxonomy extends Awesome_Base_Type {
 	// Create labels for custom post type
 	public function create_labels() {
 		$labels = array(
-			'name'              => "{$this->title['plural']}",
-			'singular_name'     => "{$this->title['singular']}",
-			'search_items'      => "Search {$this->title['plural']}",
-			'all_items'         => "All {$this->title['plural']}",
-			'parent_item'       => "Parent {$this->title['singular']}",
-			'parent_item_colon' => "Parent {$this->title['singular']}:",
-			'edit_item'         => "Edit {$this->title['singular']}",
-			'update_item'       => "Update {$this->title['singular']}",
-			'add_new_item'      => "Add New {$this->title['singular']}",
-			'new_item_name'     => "New {$this->title['singular']}",
-			'menu_name'         => "{$this->title['plural']}"
+			'name'              => sprintf( '%s', $this->title['plural'] ),
+			'singular_name'     => sprintf( '%s', $this->title['singular'] ),
+			'search_items'      => sprintf( 'Search %s', $this->title['plural'] ),
+			'all_items'         => sprintf( 'All %s', $this->title['plural'] ),
+			'parent_item'       => sprintf( 'Parent %s', $this->title['singular'] ),
+			'parent_item_colon' => sprintf( 'Parent %s:', $this->title['singular'] ),
+			'edit_item'         => sprintf( 'Edit %s', $this->title['singular'] ),
+			'update_item'       => sprintf( 'Update %s', $this->title['singular'] ),
+			'add_new_item'      => sprintf( 'Add New %s', $this->title['singular'] ),
+			'new_item_name'     => sprintf( 'New %s', $this->title['singular'] ),
+			'menu_name'         => sprintf( '%s', $this->title['plural'] )
 		);
 		return $labels;
 	}
