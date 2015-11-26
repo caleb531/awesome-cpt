@@ -10,6 +10,17 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 		'after'  => '</p>'
 	);
 
+	static $field_callbacks = array(
+		'select'   => 'populate_select',
+		'textarea' => 'populate_textarea',
+		'select'   => 'populate_select',
+		'image'    => 'populate_image',
+		'checkbox' => 'populate_checkbox',
+		'radio'    => 'populate_checkbox'
+	);
+
+	static $std_attrs = array( 'id', 'name', 'class', 'placeholder', 'pattern' );
+
 	// Meta Box constructor
 	function __construct( $params ) {
 		$this->merge_params( $params );
@@ -77,7 +88,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 
 	// Echo the attributes standard to all field types
 	public function echo_std_attrs( $meta_value, $field, $post ) {
-		$this->echo_attrs( $field, array( 'id', 'name', 'class', 'placeholder', 'pattern' ) );
+		$this->echo_attrs( $field, self::$std_attrs );
 		if ( ! empty( $field['required'] ) ) {
 			echo " required";
 		}
@@ -316,7 +327,7 @@ class Awesome_Meta_Box extends Awesome_Base_Type {
 				// Save each field to database
 				foreach ( $this->fields as $field ) {
 					$meta_value = $this->get_post_var( $field['name'] );
-					if ( $meta_value !== null ) {
+					if ( null !== $meta_value ) {
 						// If filter callback is given
 						if ( ! empty( $field['save'] ) ) {
 							// Filter saved meta value
