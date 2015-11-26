@@ -105,19 +105,19 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 	// Create labels for custom post type
 	public function create_labels() {
 		$labels = array(
-			'name'               => "{$this->title['plural']}",
-			'singular_name'      => "{$this->title['singular']}",
-			'name'               => "{$this->title['plural']}",
-			'add_new_item'       => "Add New {$this->title['singular']}",
-			'edit_item'          => "Edit {$this->title['singular']}",
-			'new_item'           => "New {$this->title['singular']}",
-			'all_items'          => "All {$this->title['plural']}",
-			'view_item'          => "View {$this->title['singular']}",
-			'search_items'       => "Search {$this->title['plural']}",
-			'not_found'          => "No {$this->name['plural']} found",
-			'not_found_in_trash' => "No {$this->name['plural']} found in the Trash",
-			'parent_item_colon'  => "Parent {$this->title['plural']}:",
-			'menu_name'          => "{$this->title['plural']}"
+			'name'               => sprintf( '%s', $this->title['plural'] ),
+			'singular_name'      => sprintf( '%s', $this->title['singular'] ),
+			'name'               => sprintf( '%s', $this->title['plural'] ),
+			'add_new_item'       => sprintf( 'Add New %s', $this->title['singular'] ),
+			'edit_item'          => sprintf( 'Edit %s', $this->title['singular'] ),
+			'new_item'           => sprintf( 'New %s', $this->title['singular'] ),
+			'all_items'          => sprintf( 'All %s', $this->title['plural'] ),
+			'view_item'          => sprintf( 'View %s', $this->title['singular'] ),
+			'search_items'       => sprintf( 'Search %s', $this->title['plural'] ),
+			'not_found'          => sprintf( 'No %s found', $this->name['plural'] ),
+			'not_found_in_trash' => sprintf( 'No %s found in the Trash', $this->name['plural'] ),
+			'parent_item_colon'  => sprintf( 'Parent %s:', $this->title['plural'] ),
+			'menu_name'          => sprintf( '%s', $this->title['plural'] )
 		);
 		return $labels;
 	}
@@ -126,17 +126,17 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 	public function create_messages( $messages ) {
 		global $post;
 		$messages = array(
-			0  => "",
-			1  => sprintf( "{$this->cap_name['singular']} updated. <a href='%s'>View {$this->name['singular']}</a>", esc_url( get_permalink( $post->ID ) ) ),
-			2  => "Custom field updated.",
-			3  => "Custom field deleted.",
-			4  => "{$this->cap_name['singular']} updated.",
-			5  => isset( $_GET['revision'] ) ? sprintf( "{$this->cap_name['singular']} restored to revision from %s", wp_post_revision_title( ( int ) $_GET['revision'], false ) ) : false,
-			6  => sprintf( "{$this->cap_name['singular']} published. <a href='%s'>View {$this->name['singular']}</a>", esc_url( get_permalink( $post->ID ) ) ),
-			7  => "{$this->cap_name['singular']} saved.",
-			8  => sprintf( "{$this->cap_name['singular']} submitted. <a target='_blank' href='%s'>Preview {$this->name['singular']}</a>", esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) ),
-			9  => sprintf( "{$this->cap_name['singular']} scheduled for: <strong>%1\$s</strong>. <a target='_blank' href='%2\$s'>Preview {$this->name['singular']}</a>", date_i18n( "M j, Y @ G:i", strtotime( $post->post_date ) ), esc_url( get_permalink( $post->ID ) ) ),
-			10 => sprintf( "{$this->cap_name['singular']} draft updated. <a target='_blank' href='%s'>Preview {$this->name['singular']}</a>", esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) ),
+			0  => '',
+			1  => sprintf( '%s updated. <a href="%s">View %s</a>', $this->cap_name['singular'], esc_url( get_permalink( $post->ID ) ), $this->name['singular'] ),
+			2  => 'Custom field updated.',
+			3  => 'Custom field deleted.',
+			4  => sprintf( '%s updated.', $this->cap_name['singular'] ),
+			5  => isset( $_GET['revision'] ) ? sprintf( '%s restored to revision from %s', $this->cap_name['singular'], wp_post_revision_title( ( int ) $_GET['revision'], false ) ) : false,
+			6  => sprintf( '%s published. <a href="%s">View %s</a>', $this->cap_name['singular'], esc_url( get_permalink( $post->ID ) ), $this->name['singular'] ),
+			7  => sprintf( '%s saved.', $this->cap_name['singular'] ),
+			8  => sprintf( '%s submitted. <a target="_blank" href="%s">Preview %s</a>', $this->cap_name['singular'], esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ), $this->name['singular'] ),
+			9  => sprintf( '%s scheduled for: <strong>%s</strong>. <a target="_blank" href="%s">Preview %s</a>', $this->cap_name['singular'], date_i18n( 'M j, Y @ G:i', strtotime( $post->post_date ) ), esc_url( get_permalink( $post->ID ) ), $this->name['singular'] ),
+			10 => sprintf( '%s draft updated. <a target="_blank" href="%s">Preview %s</a>', $this->cap_name['singular'], esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ), $this->name['singular'] ),
 		);
 		return $messages;
 	}
