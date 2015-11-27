@@ -32,7 +32,10 @@ class Awesome_Taxonomy extends Awesome_Base_Type {
 		// The post type pertaining to the current Edit screen
 		global $typenow;
 
-		$terms = get_terms( $this->id );
+		$terms = get_terms( $this->id, array(
+			// Show even those terms consisting of only drafts
+			'hide_empty' => false
+		) );
 		?>
 
 		<?php foreach ( $this->post_types as $post_type_id ): ?>
