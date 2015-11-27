@@ -159,7 +159,7 @@ class Awesome_Post_Type extends Awesome_Base_Type {
 			2  => 'Custom field updated.',
 			3  => 'Custom field deleted.',
 			4  => sprintf( '%s updated.', $this->cap_name['singular'] ),
-			5  => isset( $_GET['revision'] ) ? sprintf( '%s restored to revision from %s', $this->cap_name['singular'], wp_post_revision_title( ( int ) $_GET['revision'], false ) ) : false,
+			5  => isset( $_GET['revision'] ) ? sprintf( '%s restored to revision from %s', $this->cap_name['singular'], wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
 			6  => sprintf( '%s published. <a href="%s">View %s</a>', $this->cap_name['singular'], esc_url( get_permalink( $post->ID ) ), $this->name['singular'] ),
 			7  => sprintf( '%s saved.', $this->cap_name['singular'] ),
 			8  => sprintf( '%s submitted. <a target="_blank" href="%s">Preview %s</a>', $this->cap_name['singular'], esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ), $this->name['singular'] ),
