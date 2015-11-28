@@ -55,4 +55,32 @@ $genre = new Awesome_Taxonomy( array(
 );
 ```
 
+## Contextual help menus
+
+You can add contextual help menus for your custom taxonomy
+
+```
+$genre = new Awesome_Taxonomy( array(
+    'id'   => 'my_genre',
+    'name' => array(
+        'singular' => 'genre',
+        'plural'   => 'genres'
+    ),
+    'help_menus' => array(
+        array(
+            // Edit screen that lists all movies
+            'screen' => 'edit-my_genre',
+            'tabs'   => array(
+                array(
+                    'id'      => 'genre_overview',
+                    'title'   => 'Overview',
+                    'content' => '<p>You can use genres to group related movies.</p>'
+                )
+            ),
+            'sidebar' => '<p><strong>For more information:</strong></p><p><a href="https://wordpress.org/support/" target="_blank">Support Forums</a></p>'
+        )
+    )
+) );
+```
+
 ## [Read about meta boxes](meta-boxes.md)

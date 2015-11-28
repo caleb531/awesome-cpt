@@ -249,4 +249,43 @@ array(
 Setting the `numeric` property's value to `true` will sort the column
 numerically rather than alphabetically.
 
+## Contextual help menus
+
+You can add contextual help menus for your custom post type to aid users of your plugin. These menus appear in the top-right corner of the current admin screen, next to the **Screen Options** tab. To add these help menus, specify the `help_menus` option as an array of arrays, where each sub-array represents the help menu for a particular admin screen. Each menu array consists of the ID of the screen, as well as an array of help tabs for that screen.
+
+```
+$movie = Awesome_Post_Type( array(
+    'id' => 'my_movie',
+    'name' => array(
+        'singular' => 'movie',
+        'plural'   => 'movies'
+    ),
+    'help_menus' => array(
+        array(
+            // Edit screen that lists all movies
+            'screen' => 'edit-my_movie',
+            'tabs'   => array(
+                array(
+                    'id'      => 'movie_overview',
+                    'title'   => 'Overview',
+                    'content' => '<p>Movies are similar to pages.</p>'
+                )
+            ),
+            'sidebar' => '<p><strong>For more information:</strong></p><p><a href="https://wordpress.org/support/" target="_blank">Support Forums</a></p>'
+        ),
+        array(
+            // Post Edit screen for an individual movie
+            'screen' => 'my_movie',
+            'tabs'   => array(
+                array(
+                    'id'      => 'movie_creating',
+                    'title'   => 'Creating Movies',
+                    'content' => '<p>Creating a movie is very similar to creating a page.</p>'
+                )
+            )
+        )
+    )
+) );
+```
+
 ## [Read about taxonomies](taxonomies.md)
