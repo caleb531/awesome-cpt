@@ -12,13 +12,13 @@ Assuming a new instance of `Awesome_Post_Type` (with an `id` of `movie`) has
 already been created:
 
 ```
-$genre = new Awesome_Taxonomy( array(
-    'id'   => 'genre',
+$movie_genre = new Awesome_Taxonomy( array(
+    'id'   => 'movie_genre',
     'name' => array(
         'singular' => 'genre',
         'plural'   => 'genres'
     ),
-    'post_types' => array( 'movie' ),
+    'post_types' => array( 'my_movie' ),
     'args' => array(
         'hierarchical'      => true,
         'show_admin_column' => true
@@ -41,13 +41,13 @@ your post type admin screen, from which you can filter your posts by taxonomy.
 To work off the above example of a `genre` taxonomy:
 
 ```
-$genre = new Awesome_Taxonomy( array(
-    'id'   => 'genre',
+$movie_genre = new Awesome_Taxonomy( array(
+    'id'   => 'movie_genre',
     'name' => array(
         'singular' => 'genre',
         'plural'   => 'genres'
     ),
-    'post_types' => array( 'movie' ),
+    'post_types' => array( 'my_movie' ),
     'filterable' => true,
     'args' => array(
         'hierarchical' => true
@@ -60,8 +60,8 @@ $genre = new Awesome_Taxonomy( array(
 You can add contextual help menus for your custom taxonomy
 
 ```
-$genre = new Awesome_Taxonomy( array(
-    'id'   => 'my_genre',
+$movie_genre = new Awesome_Taxonomy( array(
+    'id'   => 'movie_genre',
     'name' => array(
         'singular' => 'genre',
         'plural'   => 'genres'
@@ -69,7 +69,7 @@ $genre = new Awesome_Taxonomy( array(
     'help_menus' => array(
         array(
             // Edit screen that lists all movies
-            'screen' => 'edit-my_genre',
+            'screen' => 'edit-movie_genre',
             'tabs'   => array(
                 array(
                     'id'      => 'genre_overview',

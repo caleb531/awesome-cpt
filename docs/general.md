@@ -12,7 +12,7 @@ Alternatively, instead of installing Awesome CPT as a plugin, you may include Aw
 
 
 ```
-require_once dirname( __FILE__ ) . '/awesome-cpt/awesome-cpt.php'
+require_once dirname( __FILE__ ) . '/awesome-cpt/awesome-cpt.php';
 ```
 
 ## Detecting Awesome CPT

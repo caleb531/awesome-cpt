@@ -20,7 +20,7 @@ already been created:
 $release_date = new Awesome_Meta_Box( array(
     'id' => 'release_date',
     'title' => 'Release Date',
-    'post_types' => array( 'movie' ),
+    'post_types' => array( 'my_movie' ),
     'context' => 'normal',
     'priority' => 'high',
     'fields' => array()
@@ -56,7 +56,7 @@ Working off of the above example:
 $release_date = new Awesome_Meta_Box( array(
     'id'         => 'release_date',
     'title'      => 'Release Date',
-    'post_types' => array( 'movie' ),
+    'post_types' => array( 'my_movie' ),
     'context'    => 'normal',
     'priority'   => 'high',
     'fields'     => array(

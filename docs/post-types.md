@@ -12,8 +12,8 @@ The singular and plural names should be lowercase *in most cases* (special
 casing is mentioned in the next section).
 
 ```
-$movie = new Awesome_Post_Type( array(
-    'id'   => 'movie',
+$my_movie = new Awesome_Post_Type( array(
+    'id'   => 'my_movie',
     'name' => array(
         'singular' => 'movie',
         'plural'   => 'movies'
@@ -22,8 +22,8 @@ $movie = new Awesome_Post_Type( array(
 ```
 
 ```
-$small_group = new Awesome_Post_Type( array(
-    'id'   => 'small_group',
+$my_small_group = new Awesome_Post_Type( array(
+    'id'   => 'my_small_group',
     'name' => array(
         'singular' => 'small group',
         'plural'   => 'small groups'
@@ -41,8 +41,8 @@ the `name` array you provide (using `ucfirst()` and `ucwords()`, respectively).
 For instance, the above `small_group` post type is equivalent to the following:
 
 ```
-$small_group = new Awesome_Post_Type( array(
-    'id'   => 'small_group',
+$my_small_group = new Awesome_Post_Type( array(
+    'id'   => 'my_small_group',
     'name' => array(
         'singular' => 'small group',
         'plural'   => 'small groups'
@@ -63,8 +63,8 @@ variants. However, for names which require special casing, you may specify these
 variants yourself.
 
 ```
-$tv_show = new Awesome_Post_Type( array(
-    'id' => 'tv_show',
+$my_tv_show = new Awesome_Post_Type( array(
+    'id' => 'my_tv_show',
     'name' => array(
         'singular' => 'TV show',
         'plural'   => 'TV show'
@@ -86,8 +86,8 @@ Awesome CPT also accepts an array of arguments (the same arguments array passed
 to `register_post_type`) via the `args` property:
 
 ```
-$movie = new Awesome_Post_Type( array(
-    'id'   => 'movie',
+$my_movie = new Awesome_Post_Type( array(
+    'id'   => 'my_movie',
     'name' => array(
         'singular' => 'movie',
         'plural'   => 'movies'
@@ -131,8 +131,8 @@ example will generate the following labels:
 However, you can override any of these by specifying them in the `labels` array:
 
 ```
-$small_group = new Awesome_Post_Type( array(
-    'id' => 'tv_show',
+$my_small_group = new Awesome_Post_Type( array(
+    'id' => 'my_small_group',
     'name' => array(
         'singular' => 'small group',
         'plural'   => 'small groups'
@@ -159,8 +159,8 @@ function my_post_updated_messages( $messages ) {
     // extend the $messages array here
     return $messages;
 }
-$movie = new Awesome_Post_Type( array(
-    'id'   => 'movie',
+$my_movie = new Awesome_Post_Type( array(
+    'id'   => 'my_movie',
     'name' => array(
         'singular' => 'movie',
         'plural'   => 'movies'
@@ -183,28 +183,28 @@ The properties of each column include:
 * `populate`: required; a function which should echo the column value for each post. It receives the post ID as its only parameter.
 
 ```
-$movie = Awesome_Post_Type( array(
-    'id' => 'movie',
+$my_movie = Awesome_Post_Type( array(
+    'id' => 'my_movie',
     'name' => array(
         'singular' => 'movie',
         'plural'   => 'movies'
     )
 ) );
-$tv_show->add_columns( array(
-  array(
-      'id'       => 'release_date',
-      'title'    => 'Release Date',
-      'populate' => function( $post_id ) {
-          echo get_post_meta( $post_id, 'release_date', true );
-      }
-  ),
-  array(
-      'id'       => 'poster',
-      'title'    => 'Poster',
-      'populate' => function( $post_id ) {
-          echo get_the_post_thumbnail( $post_id, 'thumbnail' );
-      }
-  )
+$my_tv_show->add_columns( array(
+    array(
+        'id'       => 'release_date',
+        'title'    => 'Release Date',
+        'populate' => function( $post_id ) {
+            echo get_post_meta( $post_id, 'release_date', true );
+        }
+    ),
+    array(
+        'id'       => 'poster',
+        'title'    => 'Poster',
+        'populate' => function( $post_id ) {
+            echo get_the_post_thumbnail( $post_id, 'thumbnail' );
+        }
+    )
 ) );
 ```
 
@@ -254,7 +254,7 @@ numerically rather than alphabetically.
 You can add contextual help menus for your custom post type to aid users of your plugin. These menus appear in the top-right corner of the current admin screen, next to the **Screen Options** tab. To add these help menus, specify the `help_menus` option as an array of arrays, where each sub-array represents the help menu for a particular admin screen. Each menu array consists of the ID of the screen, as well as an array of help tabs for that screen.
 
 ```
-$movie = Awesome_Post_Type( array(
+$my_movie = Awesome_Post_Type( array(
     'id' => 'my_movie',
     'name' => array(
         'singular' => 'movie',
