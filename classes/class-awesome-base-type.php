@@ -26,21 +26,32 @@ abstract class Awesome_Base_Type {
 			$this->args['labels'] = $default_labels;
 		}
 
-		// If contextual help function is given
-		if ( ! empty( $this->contextual_help ) ) {
-			// Add contextual help to type
-			add_action( 'contextual_help', array( $this, 'contextual_help' ), 10, 3 );
+		// Add contextual help menus to page if provided
+		if ( ! empty( $this->help_menus ) ) {
+			add_action( 'admin_head', array( $this, 'add_help_menu', ), 10 );
 		}
 
 	}
 
-	// Adds contextual help for type
-	public function contextual_help( $contextual_help, $screen_id, $screen ) {
+	// Adds the contextual help menu assigned to the current screen
+	public function add_help_menu() {
 
-		// If contextual help callback was given
-		if ( $this->contextual_help ) {
-			// Call function
-			call_user_func_array( $this->contextual_help, array( $contextual_help, $screen_id, $screen ) );
+		$screen = get_current_screen();
+
+		foreach ( $this->help_menus as $help_menu ) {
+
+			if ( $screen->id === $help_menu['screen'] ) {
+
+				foreach ( $help_menu['tabs'] as $tab ) {
+					$screen->add_help_tab( $tab );
+				}
+
+				if ( ! empty( $help_menu['sidebar'] ) ) {
+					$screen->set_help_sidebar( $help_menu['sidebar'] );
+				}
+
+			}
+
 		}
 
 	}
