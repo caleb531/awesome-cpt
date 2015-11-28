@@ -26,38 +26,30 @@ abstract class Awesome_Base_Type {
 			$this->args['labels'] = $default_labels;
 		}
 
-		// If contextual help function is given
-		if ( ! empty( $this->help ) ) {
-			$this->add_all_help_menus();
+		// Add contextual help menus to page if provided
+		if ( ! empty( $this->help_menus ) ) {
+			add_action( 'admin_head', array( $this, 'add_help_menu', ), 10 );
 		}
 
 	}
 
-	// Adds contextual help menus to all specified screens
-	public function add_all_help_menus() {
-
-		foreach ( $this->help as $screen_id => $help_menu ) {
-			add_action( "admin_head", array( $this, 'add_help_menu', ) );
-		}
-
-	}
-
-	// Adds a single contextual help menu to the current screen
+	// Adds the contextual help menu assigned to the current screen
 	public function add_help_menu() {
 
 		$screen = get_current_screen();
 
-		if ( ! empty( $this->help[ $screen->id ] ) ) {
-			$help_menu = $this->help[ $screen->id ];
+		foreach ( $this->help_menus as $help_menu ) {
 
-			// Add the given help tabs
-			foreach ( $help_menu['tabs'] as $tab ) {
-				$screen->add_help_tab( $tab );
-			}
+			if ( $screen->id === $help_menu['screen'] ) {
 
-			// Add right-hand help sidebar if given
-			if ( ! empty( $help_menu['sidebar'] ) ) {
-				$screen->set_help_sidebar( $help_menu['sidebar'] );
+				foreach ( $help_menu['tabs'] as $tab ) {
+					$screen->add_help_tab( $tab );
+				}
+
+				if ( ! empty( $help_menu['sidebar'] ) ) {
+					$screen->set_help_sidebar( $help_menu['sidebar'] );
+				}
+
 			}
 
 		}
