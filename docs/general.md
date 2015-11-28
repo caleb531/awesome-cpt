@@ -5,14 +5,14 @@
 To use Awesome CPT on your site, download the `awesome-cpt` directory from GitHub and upload it to your site's `plugins` directory. You can download the entire repository using the following:
 
 ```
-git clone git@github.com:caleb531/awesome-cpt.git
+git clone https://github.com/caleb531/awesome-cpt.git
 ```
 
 Alternatively, instead of installing Awesome CPT as a plugin, you may include Awesome CPT into any of your existing PHP files like so:
 
 
 ```
-require_once dirname( __FILE__ ) . '/awesome-cpt/awesome-cpt.php'
+require_once dirname( __FILE__ ) . '/awesome-cpt/awesome-cpt.php';
 ```
 
 ## Detecting Awesome CPT

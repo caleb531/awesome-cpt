@@ -8,73 +8,92 @@ class Awesome_Taxonomy extends Awesome_Base_Type {
 		'public' => true
 	);
 
-	// Taxonomy constructor
 	public function __construct( $params ) {
-		// Call parent class constructor
+
+		// Call constructor for base class
 		parent::__construct( $params, self::$arg_defaults );
 
-		// Initialize taxonomy immediately
-		$this->init();
-
-		// If taxonomy is designated as filterable
-		if ( ! empty( $this->filterable ) ) {
-			// Make taxonomy filterable
-			add_action( 'restrict_manage_posts', array( $this, 'restrict_taxonomy' ), 10 );
-		}
-	}
-
-	// Initialize taxonomy
-	public function init() {
+		// Register custom taxonomy immediately
 		register_taxonomy(
 			$this->id,
 			$this->post_types,
 			$this->args
 		);
-	}
 
-	// Add dropdown to filter posts by taxonomy term
-	public function restrict_taxonomy() {
-		global $typenow;
-		foreach ( $this->post_types as $post_type_id ) {
-			if ( $typenow === $post_type_id ) {
-				// Output HTML for term filter dropdown
-				echo "<select name='$this->id' class='postform'>";
-				echo "<option value=''>View all {$this->name['plural']}</option>";
-				// Retrieve list of all terms
-				$terms = get_terms( $this->id, array(
-					'hide_empty' => false
-				) );
-				foreach ( $terms as $term ) {
-					echo "<option value='$term->slug'";
-					// If term is currently being filtered
-					if ( ! empty( $_GET[ $this->id ] ) && $_GET[ $this->id ] === $term->slug ) {
-						// Select the corresponding option
-						echo " selected";
-					}
-					echo ">$term->name</option>";
-				}
-				echo "</select>";
-				break;
-			}
+		// Make taxonomy filterable if designated as such
+		if ( ! empty( $this->filterable ) ) {
+			add_action( 'restrict_manage_posts', array( $this, 'restrict_taxonomy' ), 10 );
 		}
+
 	}
 
-	// Create labels for custom post type
+	// Adds dropdown to filter posts by taxonomy term
+	public function restrict_taxonomy() {
+		// The post type pertaining to the current Edit screen
+		global $typenow;
+
+		$terms = get_terms( $this->id, array(
+			// Show even those terms consisting of only drafts
+			'hide_empty' => false
+		) );
+		?>
+
+		<?php foreach ( $this->post_types as $post_type_id ): ?>
+
+			<?php $is_empty = empty( $_GET[ $this->id ] ); ?>
+
+			<?php if ( $typenow === $post_type_id ): ?>
+
+				<select name="<?php echo $this->id; ?>" class='postform'>
+
+					<option value=''>View all <?php echo $this->name['plural']; ?></option>
+
+					<?php foreach ( $terms as $term ): ?>
+
+						<?php if ( ! $is_empty && $_GET[ $this->id ] === $term->slug ): ?>
+
+							<option value='<?php echo $term->slug; ?>' selected><?php echo $term->name; ?></option>
+
+						<?php else: ?>
+
+							<option value='<?php echo $term->slug; ?>'><?php echo $term->name; ?></option>
+
+						<?php endif; ?>
+
+					<?php endforeach; ?>
+
+				</select>
+
+				<?php
+				// Stop as soon as the current Edit screen's post type is found
+				// to be supported by this custom taxonomy
+				break;
+				?>
+
+			<?php endif; ?>
+
+		<?php endforeach;
+
+	}
+
+	// Creates labels for taxonomy (displayed on taxonomy Edit screens)
 	public function create_labels() {
+
 		$labels = array(
-			'name'              => __( "{$this->title['plural']}" ),
-			'singular_name'     => __( "{$this->title['singular']}" ),
-			'search_items'      => __( "Search {$this->title['plural']}" ),
-			'all_items'         => __( "All {$this->title['plural']}" ),
-			'parent_item'       => __( "Parent {$this->title['singular']}" ),
-			'parent_item_colon' => __( "Parent {$this->title['singular']}:" ),
-			'edit_item'         => __( "Edit {$this->title['singular']}" ),
-			'update_item'       => __( "Update {$this->title['singular']}" ),
-			'add_new_item'      => __( "Add New {$this->title['singular']}" ),
-			'new_item_name'     => __( "New {$this->title['singular']}" ),
-			'menu_name'         => __( "{$this->title['plural']}" )
+			'name'              => sprintf( '%s', $this->title['plural'] ),
+			'singular_name'     => sprintf( '%s', $this->title['singular'] ),
+			'search_items'      => sprintf( 'Search %s', $this->title['plural'] ),
+			'all_items'         => sprintf( 'All %s', $this->title['plural'] ),
+			'parent_item'       => sprintf( 'Parent %s', $this->title['singular'] ),
+			'parent_item_colon' => sprintf( 'Parent %s:', $this->title['singular'] ),
+			'edit_item'         => sprintf( 'Edit %s', $this->title['singular'] ),
+			'update_item'       => sprintf( 'Update %s', $this->title['singular'] ),
+			'add_new_item'      => sprintf( 'Add New %s', $this->title['singular'] ),
+			'new_item_name'     => sprintf( 'New %s', $this->title['singular'] ),
+			'menu_name'         => sprintf( '%s', $this->title['plural'] )
 		);
 		return $labels;
+
 	}
 
 }
