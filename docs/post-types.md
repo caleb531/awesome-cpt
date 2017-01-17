@@ -101,7 +101,7 @@ $my_movie = new Awesome_Post_Type( array(
 ```
 
 You can read about these possible arguments via the [WordPress
-Codex](http://codex.wordpress.org/Function_Reference/register_post_type#Arguments).
+Codex](https://codex.wordpress.org/Function_Reference/register_post_type#Arguments).
 
 Note that all Awesome CPT post types are made public by default (in contrast to
 the normal WordPress default for `public`).
