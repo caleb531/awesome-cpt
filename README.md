@@ -1,7 +1,7 @@
 # Awesome CPT
 
 *Copyright 2017 Caleb Evans*  
-*Released under the GNU General Public License v2.0*
+*Released under the GNU General Public License v2.0 or later*
 
 Awesome CPT is a set of classes designed to make coding WordPress custom post
 types incredibly easy and flexible.
