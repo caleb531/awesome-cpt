@@ -4,7 +4,7 @@
  * Description: The easiest and most flexible way to code custom post types in WordPress
  * Author:      Caleb Evans
  * Author URI:  https://calebevans.me/
- * Version:     1.1.0
+ * Version:     1.2.0
  * License: GNU General Public License v2.0 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
